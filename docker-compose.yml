@@ -1,0 +1,30 @@
+services:
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/sugutan_backend
+      # バインドマウントのディレクトリ名はDockerfileのWORKDIRの名前に一致させること
+      # そうすることで、ローカルとコンテナの双方の同期が自動で取れる
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+  db:
+    image: postgres:12-alpine
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+volumes:
+  db-data:
