@@ -1,0 +1,93 @@
+inherit_from: .rubocop_todo.yml
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+AllCops:
+  TargetRubyVersion: 3.1
+  SuggestExtensions: false
+  # 最新のルールを適用する
+  NewCops: enable
+  # 何のルールに引っかかったか表示する
+  DisplayCopNames: true
+  # rubocop対象外(リポジトリ毎で調節)
+  Exclude:
+    - "Gemfile"
+    - "bin/**/*"
+    - "db/**/*"
+    - "log/**/*"
+    - "public/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "config/environments/*"
+    - "config/initializers/**/*"
+    - "config/puma.rb"
+### ルールのカスタマイズ
+# RSpecは1つのブロックあたりの行数が多くなるため、チェックの除外から外す
+# ブロック内の行数をチェックする
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+# Assignment: 変数への代入
+# Branch: メソッド呼び出し
+# Condition: 条件文
+# 上記項目をRubocopが計算して基準値を超えると警告を出す（上記頭文字をとって'Abc'）
+Metrics/AbcSize:
+  Max: 30
+# メソッドの中身が複雑になっていないか、Rubocopが計算して基準値を超えると警告を出す
+Metrics/PerceivedComplexity:
+  Max: 8
+# 循環的複雑度が高すぎないかをチェック（ifやforなどを1メソッド内で使いすぎている）
+Metrics/CyclomaticComplexity:
+  Max: 10
+# メソッドの行数が多すぎないかをチェック
+Metrics/MethodLength:
+  Max: 30
+# ネストが深すぎないかをチェック（if文のネストもチェック）
+Metrics/BlockNesting:
+  Max: 5
+# クラスの行数をチェック（無効）
+Metrics/ClassLength:
+  Enabled: false
+# 一行あたりの文字数
+Layout/LineLength:
+  Max: 130
+  # 下記ファイルはチェックの対象から外す
+  Exclude:
+    - "Rakefile"
+    - "spec/rails_helper.rb"
+    - "spec/spec_helper.rb"
+# メソッドの改行ルール
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+# 日本語にコメントを許可
+Style/AsciiComments:
+  Enabled: false
+# クラスにコメントを残さなくても良い
+Style/Documentation:
+  Enabled: false
+# コントローラ等のモジュールをネストしての宣言
+Style/ClassAndModuleChildren:
+  Enabled: false
+# 文字列のfreeze（Ruby3からは自動でfreezeされるので要らない）
+Style/FrozenStringLiteralComment:
+  Enabled: false
+# ガード節の提案
+# メソッドの冒頭部分で条件判定して処理を終了し、メインの処理へ影響を与えないようにします。
+Style/GuardClause:
+  MinBodyLength: 5
+# 文字列のダブルクォートチェック
+Style/StringLiterals:
+  Enabled: false
+# シンボルで構成される配列リテラルをチェック
+Style/SymbolArray:
+  Enabled: false
+# 文字列による配列の%記法のチェック
+Style/WordArray:
+  Enabled: false
+# 変数名に数字を許可
+Naming/VariableNumber:
+  Enabled: false
+# メソッド名等の命名の指摘
+Naming/PredicateName:
+  Enabled: false
