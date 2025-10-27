@@ -1,0 +1,66 @@
+name: test flow # ワークフローの名前
+
+on: [push] # プッシュしたらとりま実行する
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    services:
+      postgres: #ここの情報がdatabase.ymlのtest用と一致している必要がある
+        env:
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: sugutan_backend_test
+        image: postgres
+        ports:
+          - 5432:5432
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setting up ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Bundler and gem install
+        run: |
+          gem install bundler
+          bundle install --path vendor/bundle
+
+      - name: Database create and migrate
+        run: |
+          bundle exec rails db:create RAILS_ENV=test
+          bundle exec rails db:migrate RAILS_ENV=test
+
+      - name: assets precompile
+        run: bundle exec rake assets:precompile RAILS_ENV=test
+
+      - name: Run tests
+        run: |
+          bundle exec rspec
+
+  # gem install error_highlight -v "0.7.0" が無いとDatabase create and migrateで
+  # バージョンに関するコンフリクトが発生する
+  # と言うのは嘘で、bundle installをローカルで実行してGemfile.lockを更新してあげないと
+  # github actionsでbundle cacheを使用するときに参考にするGemfile.lockがold versionになってしまって
+  # 結果的にgithub actionsのVM上で、バージョンのコンフリクトをGemfileからのbundle installとGemfile.lockで起こしてしまう
+
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      # - name: Bundler and gem install
+      #   run: |
+      #     gem install bundler
+      #     gem install error_highlight -v "0.7.0"
+      #     bundle install --path vendor/bundle
+
+      - name: Run rubocop
+        run: bundle exec rubocop
