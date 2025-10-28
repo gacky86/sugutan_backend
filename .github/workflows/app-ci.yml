@@ -45,22 +45,22 @@ jobs:
   # github actionsでbundle cacheを使用するときに参考にするGemfile.lockがold versionになってしまって
   # 結果的にgithub actionsのVM上で、バージョンのコンフリクトをGemfileからのbundle installとGemfile.lockで起こしてしまう
 
-  # rubocop:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-  #     - name: Set up Ruby
-  #       uses: ruby/setup-ruby@v1
-  #       with:
-  #         bundler-cache: true
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
 
-  #     # - name: Bundler and gem install
-  #     #   run: |
-  #     #     gem install bundler
-  #     #     gem install error_highlight -v "0.7.0"
-  #     #     bundle install --path vendor/bundle
+      # - name: Bundler and gem install
+      #   run: |
+      #     gem install bundler
+      #     gem install error_highlight -v "0.7.0"
+      #     bundle install --path vendor/bundle
 
-  #     - name: Run rubocop
-  #       run: bundle exec rubocop
+      - name: Run rubocop
+        run: bundle exec rubocop
