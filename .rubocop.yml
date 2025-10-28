@@ -1,8 +1,8 @@
 plugins:
   - rubocop-rails
-  - rubocop-rspec
 
 require:
+  - rubocop-rspec
   - rubocop-performance
 
 AllCops:
