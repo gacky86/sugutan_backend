@@ -46,9 +46,9 @@ group :development, :test do
   gem 'rubocop-rspec', require: false
 end
 
-group :development do
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+# group :development do
+#   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
+#   # gem "spring"
 
-  gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
-end
+#   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+# end

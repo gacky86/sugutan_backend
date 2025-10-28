@@ -94,7 +94,6 @@ GEM
     drb (2.2.3)
     erb (4.0.4)
       cgi (>= 0.3.3)
-    error_highlight (0.7.0)
     erubi (1.13.1)
     factory_bot (6.5.1)
       activesupport (>= 6.1.0)
@@ -155,6 +154,7 @@ GEM
     pg (1.6.2-aarch64-linux)
     pg (1.6.2-arm64-darwin)
     pg (1.6.2-x86_64-darwin)
+    pg (1.6.2-x86_64-linux)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -277,10 +277,10 @@ PLATFORMS
   aarch64-linux
   arm64-darwin-22
   x86_64-darwin
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap
-  error_highlight (>= 0.4.0)
   factory_bot_rails
   faker
   pg (~> 1.1)
