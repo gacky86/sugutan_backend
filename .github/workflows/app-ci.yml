@@ -8,6 +8,7 @@ jobs:
     services:
       postgres: #ここの情報がdatabase.ymlのtest用と一致している必要がある
         env:
+          POSTGRES_USER: password
           POSTGRES_PASSWORD: password
           POSTGRES_DB: sugutan_backend_test
         image: postgres
