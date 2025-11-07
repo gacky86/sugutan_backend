@@ -52,11 +52,13 @@ DeviseTokenAuth.setup do |config|
   # }
 
   # 上記のdefault設定の'authorization'を削除
-  config.headers_names = {:'access-token' => 'access-token',
-                         :'client' => 'client',
-                         :'expiry' => 'expiry',
-                         :'uid' => 'uid',
-                         :'token-type' => 'token-type' }
+  config.headers_names = {
+    :'authorization' => 'Authorization',
+    :'access-token' => 'access-token',
+    :'client' => 'client',
+    :'expiry' => 'expiry',
+    :'uid' => 'uid',
+    :'token-type' => 'token-type' }
 
   # Makes it possible to use custom uid column
   # config.other_uid = "foo"
