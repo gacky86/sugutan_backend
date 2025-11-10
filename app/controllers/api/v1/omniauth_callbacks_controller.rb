@@ -7,16 +7,40 @@ module Api
 
         # request.env['omniauth.auth']にリクエストパラメータのユーザー情報が入ってくる
         user = User.from_omniauth(request.env['omniauth.auth'])
+
+        # persisted? : DBに登録ずみか？
         if user.persisted?
           # create_new_auth_tokenでトークン情報を全て生成する
           token = user.create_new_auth_token
           if user.save
-            # フロントエンド側でトークン情報を取得できるようにURLのパラメーター内にトークン情報を入れる
-            redirect_to "http://localhost:5173?status=success&access-token=#{token['access-token']}&uid=#{user.uid}&client=#{token['client']}&expiry=#{token['expiry']}"
+            # cookie に token を保存
+            set_auth_cookies(token, user)
+            # redirect_to "http://localhost:5173?status=success&access-token=#{token['access-token']}&uid=#{user.uid}&client=#{token['client']}&expiry=#{token['expiry']}"
+            # フロントエンドのリダイレクト（statusやexpiryをどうするかは検討中）
+            redirect_to redirect_url
           end
         else
           render json: { status: 'ERROR', message: '401 Unauthorized', data: user.errors }, status: :unprocessable_entity
         end
+      end
+
+      private
+
+      # Cookie にトークンを保存
+      def set_auth_cookies(token, user)
+        # 念の為既存のcookieを削除してからcookieに保存
+        cookies.delete(:_access_token)
+        cookies.delete(:_client)
+        cookies.delete(:_uid)
+        cookies[:_uid]          = { value: user.uid, httponly: false, secure: Rails.env.production?, same_site: :lax }
+        cookies[:_client]       = { value: token["client"], httponly: false, secure: Rails.env.production?, same_site: :lax }
+        cookies[:_access_token] =
+          { value: token["access-token"], httponly: false, secure: Rails.env.production?, same_site: :lax }
+      end
+
+      # フロントのURLを返す
+      def redirect_url
+        ENV['FRONTEND_HOST'] || "http://localhost:5173"
       end
     end
   end
