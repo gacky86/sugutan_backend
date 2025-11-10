@@ -7,8 +7,10 @@ Rails.application.routes.draw do
         registrations: 'api/v1/auth/registrations',
         omniauth_callbacks: 'api/v1/omniauth_callbacks'
       }
-      namespace :auth do
-        resources :sessions, only: %i[index]
+
+      # oauthのルーティングと衝突回避のためscope使用
+      scope :user do
+        resources :sessions, only: %i[index], module: :auth
       end
       mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
     end
