@@ -1,10 +1,21 @@
-# ログイン状態確認用コントローラー
-class Api::V1::Auth::SessionsController < ApplicationController
-  def index
-    if current_api_v1_user
-      render json: { is_login: true, status: 200, data: current_api_v1_user }
-    else
-      render json: { is_login: false, status: 500, message: 'ユーザーが存在しません' }
+class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
+  include ActionController::Cookies
+
+  def create
+    super do |resource|
+      if resource && resource.valid?
+        client_id = @token.client
+        token = @token.token
+
+        set_auth_cookies(resource, client_id, token)
+      end
     end
+  end
+
+  def destroy
+    cookies.delete(:uid)
+    cookies.delete(:client)
+    cookies.delete(:access_token)
+    super
   end
 end
