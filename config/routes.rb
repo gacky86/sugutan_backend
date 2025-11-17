@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
       mount_devise_token_auth_for 'User', at: 'auth', controllers: {
         sessions: 'api/v1/auth/sessions',
-        registrations: 'api/v1/auth/registrations',
-        omniauth_callbacks: 'api/v1/auth/omniauth_callbacks'
+        registrations: 'api/v1/auth/registrations'
+        # omniauth_callbacks: 'api/v1/auth/omniauth_callbacks'
       }
 
       mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

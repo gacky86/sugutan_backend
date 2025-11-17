@@ -1,5 +1,6 @@
 class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
   include ActionController::Cookies
+  before_action :validate_check, only: :create
 
   def create
     super do |resource|
@@ -17,5 +18,33 @@ class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
     cookies.delete(:client)
     cookies.delete(:access_token)
     super
+  end
+
+  protected
+
+  def validate_check
+    email = params[:email]
+    password = params[:password]
+
+    # 使用不可能な文字がメールアドレス及びパスワードに含まれていないこと
+    # ただし、パスワードやメアドの条件を不正ログインに開示しないようにするため、メッセージは「メールアドレスまたはパスワードが違います」に固定。
+    render json: { error: "メールアドレスまたはパスワードが違います" }, status: :unprocessable_entity if contains_invalid_email_chars?(email)
+    render json: { error: "メールアドレスまたはパスワードが違います" }, status: :unprocessable_entity if contains_invalid_password_chars?(password)
+  end
+
+  def render_create_error_bad_credentials
+    render json: { error: "メールアドレスまたはパスワードが違います" }, status: :unauthorized
+  end
+
+  private
+
+  def contains_invalid_email_chars?(value)
+    invalid_pattern = /[^a-zA-Z0-9@\.\_\-]/
+    value.match?(invalid_pattern)
+  end
+
+  def contains_invalid_password_chars?(value)
+    invalid_pattern = /[^a-zA-Z0-9\_]/
+    value.match?(invalid_pattern)
   end
 end
