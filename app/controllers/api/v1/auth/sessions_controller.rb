@@ -4,7 +4,7 @@ class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
 
   def create
     super do |resource|
-      if resource && resource.valid?
+      if resource&.valid?
         client_id = @token.client
         token = @token.token
 
