@@ -2,6 +2,17 @@ class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
   include ActionController::Cookies
   before_action :validate_check, only: :create
 
+  # def validate_token
+  #   if current_api_v1_user
+  #     render json: {
+  #       is_login: true,
+  #       data: current_api_v1_user
+  #     }
+  #   else
+  #     render json: { is_login: false }, status: :unauthorized
+  #   end
+  # end
+
   def create
     super do |resource|
       if resource&.valid?

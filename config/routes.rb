@@ -6,11 +6,14 @@ Rails.application.routes.draw do
         resources :cards
       end
 
-      mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+      mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks], controllers: {
         sessions: 'api/v1/auth/sessions',
         registrations: 'api/v1/auth/registrations'
         # omniauth_callbacks: 'api/v1/auth/omniauth_callbacks'
       }
+      namespace :auth do
+        get "validate_token", to: "sessions#validate_token"
+      end
 
       mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
     end
