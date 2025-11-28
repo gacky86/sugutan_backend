@@ -13,17 +13,12 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def create
-    @card = @flashcard.cards.build(card_params)
-    if @card.save
-      learning_factor = LearningFactor.new(card: @card)
-      if learning_factor.save
-        render json: { card: @card, learning_factor: learning_factor }, status: :ok
-      else
-        @card.destroy
-        render json: { errors: learning_factor.errors }, status: :unprocessable_entity
-      end
+    card = Card.new(card_params)
+    card.flashcard = @flashcard
+    if card.save
+      render json: card
     else
-      render json: { errors: @card.errors }, status: :unprocessable_entity
+      render json: { errors: card.errors }, status: :unprocessable_entity
     end
   end
 
