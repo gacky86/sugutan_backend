@@ -21,4 +21,7 @@ class User < ApplicationRecord
   #     # user.skip_confirmation!
   #   end
   # end
+
+  # Association
+  has_many :flashcards, dependent: :destroy
 end
