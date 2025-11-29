@@ -6,6 +6,10 @@ Rails.application.routes.draw do
         resources :cards
       end
 
+      resources :cards do
+        resources :extra_notes, only: %i[create index update destroy]
+      end
+
       mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks], controllers: {
         sessions: 'api/v1/auth/sessions',
         registrations: 'api/v1/auth/registrations'

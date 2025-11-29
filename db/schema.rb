@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_18_111128) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_28_081250) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,11 +47,22 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_18_111128) do
     t.string "back"
     t.text "front_sentence"
     t.text "back_sentence"
-    t.text "explanation"
     t.bigint "flashcard_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "explanation_front"
+    t.text "explanation_back"
+    t.string "card_type"
     t.index ["flashcard_id"], name: "index_cards_on_flashcard_id"
+  end
+
+  create_table "extra_notes", force: :cascade do |t|
+    t.string "note_type"
+    t.text "content"
+    t.bigint "card_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_extra_notes_on_card_id"
   end
 
   create_table "flashcards", force: :cascade do |t|
@@ -93,5 +104,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_18_111128) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cards", "flashcards"
+  add_foreign_key "extra_notes", "cards"
   add_foreign_key "flashcards", "users"
 end
