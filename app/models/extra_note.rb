@@ -3,4 +3,5 @@ class ExtraNote < ApplicationRecord
 
   # Validation
   validates :note_type, :content, presence: true
+  validates :content, length: { maximum: 256 }
 end

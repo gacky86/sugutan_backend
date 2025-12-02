@@ -14,7 +14,7 @@ class Api::V1::ExtraNotesController < ApplicationController
 
   def create
     extra_note = ExtraNote.new(extra_note_params)
-    extra_note.cars = @card
+    extra_note.card = @card
     if extra_note.save
       render json: extra_note
     else
