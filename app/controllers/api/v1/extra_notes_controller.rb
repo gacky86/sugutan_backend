@@ -46,7 +46,7 @@ class Api::V1::ExtraNotesController < ApplicationController
   end
 
   def set_extra_note
-    @extra_note = @cards.extra_notes.find(params[:id])
+    @extra_note = @card.extra_notes.find(params[:id])
   end
 
   def extra_note_params
