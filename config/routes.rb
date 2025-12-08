@@ -19,6 +19,8 @@ Rails.application.routes.draw do
         get "validate_token", to: "sessions#validate_token"
       end
 
+      post 'gemini/generate_sentence', to: 'gemini#generate_sentence'
+
       mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
     end
   end
