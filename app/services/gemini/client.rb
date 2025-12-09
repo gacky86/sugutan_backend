@@ -1,10 +1,19 @@
-class Gemini::Flash::GenerateContent::Sentence
-  def initialize(system_instruction:, text:)
-    @system_instruction = system_instruction
-    @text = text
+require "net/http"
+require "uri"
+require "json"
+
+class Gemini::Client
+  GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
+  def self.call(system_instruction:, input:)
+    new(system_instruction:, input:).call
   end
 
-  def run
+  def initialize(system_instruction:, input:)
+    @system_instruction = system_instruction
+    @input = input
+  end
+
+  def call
     http_request = prepare_http_request
     http_request[:request].body = request_body
     response = http_request[:http].request(http_request[:request])
@@ -22,8 +31,7 @@ class Gemini::Flash::GenerateContent::Sentence
   private
 
   def prepare_http_request
-    endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
-    url = URI.parse("#{endpoint}?key=#{ENV.fetch('GEMINI_API_KEY', nil)}")
+    url = URI.parse("#{GEMINI_URL}?key=#{ENV.fetch('GEMINI_API_KEY', nil)}")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     request = Net::HTTP::Post.new(url, { 'Content-Type' => 'application/json' })
@@ -34,7 +42,7 @@ class Gemini::Flash::GenerateContent::Sentence
     {
       contents: [{
         parts: [{
-          text: @text
+          text: @input
         }],
         role: 'user'
       }],
