@@ -15,7 +15,8 @@ module Gemini
         "antonyms": string[] | [],
         "etymology": string,
         "part_of_speech": string,
-        "collocations": string[]
+        "collocations": string[],
+        "success": boolean
       }
       Rules:
       - Return an array: [ {…}, {…} ]
@@ -33,6 +34,26 @@ module Gemini
       Allowed part of speech labels:
       "noun","verb","adjective","adverb","phrase","idiom","auxiliary verb",
       "conjunction","pronoun","preposition","article","other"
+
+      If the input does not correspond to any valid English or Japanese word, phrase, idiom, or natural expression,
+      or if you cannot reliably determine its meaning:
+
+      - Return:
+        "success": false
+      - And set all other fields to empty values according to the schema.
+
+      A valid expression means:
+      - It exists in common English or Japanese usage
+      - It appears in standard dictionaries
+      - It has recognizable linguistic structure
+      - It is not a random string or a misspelling
+
+      Examples of INVALID inputs:
+      "blorf", "takanichiwa", "gretless", "asdikqu"
+
+      Examples of VALID inputs:
+      "abandon", "こんにちは", "kick off", "取り繕う"
+
     PROMPT
 
     def self.call(word)
