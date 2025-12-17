@@ -6,7 +6,7 @@ class CardProgressInitializer
       progress.interval_days = DEFAULT_INTERVAL_DAYS
       progress.review_count  = 0
       progress.easiness_factor = DEFAULT_EF
-      progress.next_review_at = Time.current + DEFAULT_INTERVAL_DAYS.days
+      progress.next_review_at = Time.current
     end
   rescue ActiveRecord::RecordNotUnique
     CardProgress.find_by(user: user, card: card)
