@@ -10,6 +10,14 @@ Rails.application.routes.draw do
         resources :extra_notes, only: %i[create index update destroy]
       end
 
+      resources :card_progresses do
+        post :start_learning, on: :collection
+        collection { get :due }
+        member do
+          post :review
+        end
+      end
+
       mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks], controllers: {
         sessions: 'api/v1/auth/sessions',
         registrations: 'api/v1/auth/registrations'
