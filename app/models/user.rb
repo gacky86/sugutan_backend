@@ -24,4 +24,5 @@ class User < ApplicationRecord
 
   # Association
   has_many :flashcards, dependent: :destroy
+  has_many :card_progresses, dependent: :destroy
 end
