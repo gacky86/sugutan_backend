@@ -2,12 +2,17 @@ class Api::V1::FlashcardsController < ApplicationController
   # skip_before_action :authenticate_user!
   before_action :authenticate_api_v1_user!
   def index
-    flashcards = if params[:only_mine]
-                   current_api_v1_user.flashcards
-                 else
-                   Flashcard.all
-                 end
-    render json: flashcards
+    flashcards = current_api_v1_user.flashcards.with_stats
+    render json: flashcards.map { |f|
+      {
+        id: f.id,
+        title: f.title,
+        description: f.description,
+        language: f.language,
+        cards_count: f.cards_count,
+        last_reviewed_days_ago: f.last_reviewed_days_ago
+      }
+    }
   end
 
   def show
