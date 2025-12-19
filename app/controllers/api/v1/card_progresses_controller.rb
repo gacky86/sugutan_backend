@@ -7,7 +7,8 @@ class Api::V1::CardProgressesController < ApplicationController
     flashcard.cards.each do |card|
       CardProgressInitializer.call(
         user: current_api_v1_user,
-        card: card
+        card: card,
+        mode: params[:mode]
       )
     end
     render json: { message: 'cards in this flashcard were initialized' }, status: :ok
@@ -15,8 +16,10 @@ class Api::V1::CardProgressesController < ApplicationController
 
   # 学習対象カードの取得：本日学習対象となるカードの取得
   def due
-    progresses = current_api_v1_user.card_progresses.due.ordered_by_due.includes(card: :extra_notes)
-    # render json: progresses
+    progresses = current_api_v1_user.card_progresses
+      .for_mode(params[:mode])
+      .due.ordered_by_due
+      .includes(card: :extra_notes)
     render json: progresses.as_json(
       include: {
         card: {

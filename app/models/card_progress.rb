@@ -2,7 +2,13 @@ class CardProgress < ApplicationRecord
   belongs_to :user
   belongs_to :card
 
-  validates :card_id, uniqueness: { scope: :user_id }
+  validates :card_id, uniqueness: { scope: [:user_id, :mode] }
+
+  enum :mode, {
+    input: "input",
+    output: "output"
+  }
+
   SUCCESS_MULTIPLIER = 2
   MIN_INTERVAL_DAYS = 1
 
@@ -54,6 +60,9 @@ class CardProgress < ApplicationRecord
       next_review_at: Time.current + new_interval.days
     )
   end
+
+  # 学習モードごとのcard_progressに絞り込むscope
+  scope :for_mode, ->(mode) { where(mode:) }
 
   scope :due, lambda {
     where(next_review_at: ..Time.current)
