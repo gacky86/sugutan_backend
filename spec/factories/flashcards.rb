@@ -4,6 +4,6 @@ FactoryBot.define do
     title { "english words" }
     icon_color { "red" }
     language { "EN" }
-    user { nil }
+    user
   end
 end

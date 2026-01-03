@@ -1,4 +1,6 @@
 class Flashcard < ApplicationRecord
+  LANGUAGE = %w[EN DE FR IT].freeze
+
   # Associations
   belongs_to :user
   has_many :cards, dependent: :destroy
@@ -8,7 +10,7 @@ class Flashcard < ApplicationRecord
   validates :title, length: { maximum: 60 }
   validates :description, length: { maximum: 120 }
   validates :title, :language, :icon_color, presence: true
-  validates :language, inclusion: { in: %w[EN DE FR IT] }
+  validates :language, inclusion: { in: LANGUAGE, allow_blank: true }
 
   scope :with_stats, lambda {
     left_joins(cards: :card_progresses)
