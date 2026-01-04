@@ -179,4 +179,64 @@ RSpec.describe Flashcard, type: :model do
       end
     end
   end
+
+  describe '統計情報に関するテスト' do
+    let(:user) { FactoryBot.create(:user) }
+    let(:flashcard) { FactoryBot.create(:flashcard, user: user) }
+    let(:card1) { FactoryBot.create(:card, flashcard: flashcard) }
+    let(:card2) { FactoryBot.create(:card, flashcard: flashcard) }
+
+    describe '.with_stats' do
+      subject { Flashcard.with_stats.find(flashcard.id) }
+
+      before do
+        # 1つ目のカードに学習記録（3日前）を作成
+        FactoryBot.create(:card_progress, card: card1, last_reviewed_at: 3.days.ago)
+        # 2つ目のカードに学習記録（1日前）を作成
+        FactoryBot.create(:card_progress, card: card2, last_reviewed_at: 1.day.ago)
+      end
+
+      it 'cards_countが正しく計算されること' do
+        expect(subject.cards_count).to eq(2)
+      end
+
+      it '最新のlast_reviewed_atが取得できること' do
+        # 1日前の方が新しいため、card2の学習日が採用される
+        expect(subject.last_reviewed_at.to_date).to eq(1.day.ago.to_date)
+      end
+
+      it 'カードが存在しない場合でもcards_countが0として取得できること' do
+        empty_flashcard = FactoryBot.create(:flashcard, user: user)
+        stats = Flashcard.with_stats.find(empty_flashcard.id)
+        expect(stats.cards_count).to eq(0)
+        expect(stats.last_reviewed_at).to be_nil
+      end
+    end
+
+    # describe '#last_reviewed_days_ago' do
+    #   context 'last_reviewed_atが存在する場合' do
+    #     it '今日との日数差が正しく計算されること' do
+    #       # with_statsを使わずに、手動で属性をセットしてテストすることも可能
+    #       flashcard_with_attr = Flashcard.new
+    #       allow(flashcard_with_attr).to receive(:last_reviewed_at).and_return(3.days.ago)
+
+    #       expect(flashcard_with_attr.last_reviewed_days_ago).to eq(3)
+    #     end
+    #   end
+
+    #   context 'last_reviewed_atが今日の場合' do
+    #     it '0を返すこと' do
+    #       allow(flashcard).to receive(:last_reviewed_at).and_return(Time.current)
+    #       expect(flashcard.last_reviewed_days_ago).to eq(0)
+    #     end
+    #   end
+
+    #   context 'last_reviewed_atがnilの場合' do
+    #     it 'nilを返すこと' do
+    #       expect(flashcard.last_reviewed_at).to be_nil # 通常の状態
+    #       expect(flashcard.last_reviewed_days_ago).to be_nil
+    #     end
+    #   end
+    # end
+  end
 end

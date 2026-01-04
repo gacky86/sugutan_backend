@@ -18,7 +18,7 @@ class Api::V1::ExtraNotesController < ApplicationController
     if extra_note.save
       render json: extra_note
     else
-      render json: { errors: extra_note.errors }, status: :unprocessable_entity
+      render json: { errors: extra_note.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -26,7 +26,7 @@ class Api::V1::ExtraNotesController < ApplicationController
     if @extra_note.update(extra_note_params)
       render json: @extra_note
     else
-      render json: { errors: @extra_note.errors }, status: :unprocessable_entity
+      render json: { errors: @extra_note.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

@@ -12,6 +12,7 @@ class CardProgress < ApplicationRecord
   belongs_to :user
   belongs_to :card
 
+  # 1つのcardについて、inputモード用とoutputモード用のそれぞれのcard_progressを持つ
   validates :card_id, uniqueness: { scope: [:user_id, :mode] }
   validates :interval_days, :next_review_at, :review_count, :mode, presence: true
 
