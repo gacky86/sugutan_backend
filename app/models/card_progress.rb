@@ -1,14 +1,4 @@
 class CardProgress < ApplicationRecord
-  belongs_to :user
-  belongs_to :card
-
-  validates :card_id, uniqueness: { scope: [:user_id, :mode] }
-
-  enum :mode, {
-    input: "input",
-    output: "output"
-  }
-
   SUCCESS_MULTIPLIER = 2
   MIN_INTERVAL_DAYS = 1
 
@@ -18,6 +8,18 @@ class CardProgress < ApplicationRecord
     "normal" => 4, # 普通
     "easy" => 5 # 簡単
   }.freeze
+
+  belongs_to :user
+  belongs_to :card
+
+  # 1つのcardについて、inputモード用とoutputモード用のそれぞれのcard_progressを持つ
+  validates :card_id, uniqueness: { scope: [:user_id, :mode] }
+  validates :interval_days, :next_review_at, :review_count, :mode, presence: true
+
+  enum :mode, {
+    input: "input",
+    output: "output"
+  }
 
   def mark_review!(difficulty:)
     quality = DIFFICULTY_TO_QUALITY[difficulty]

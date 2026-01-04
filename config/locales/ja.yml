@@ -1,0 +1,39 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+      flashcard: "単語帳"
+      card: "カード"
+      card_progress: "学習進捗"
+      extra_note: "追加ノート"
+    attributes:
+      user:
+        name: "名前"
+        nickname: "ニックネーム"
+        email: "メールアドレス"
+        image: "画像"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認用）"
+      flashcard:
+        title: "タイトル"
+        description: "説明"
+        icon_color: "アイコンカラー"
+        language: "言語"
+      card:
+        front: "表面（単語）"
+        back: "裏面（単語）"
+        front_sentence: "表面（例文）"
+        back_sentence: "裏面（例文）"
+        explanation_front: "表面（解説）"
+        explanation_back: "裏面（解説）"
+        card_type: "品詞"
+      card_progress:
+        interval_days: "復習間隔（日数）"
+        next_review_at: "次回復習日時"
+        review_count: "復習回数"
+        easiness_factor: "難易度係数"
+        last_reviewed_at: "最終復習日時"
+        mode: "学習モード"
+      extra_note:
+        note_type: "ノート形式"
+        content: "内容"

@@ -25,7 +25,7 @@ class Api::V1::FlashcardsController < ApplicationController
     if flashcard.save
       render json: flashcard
     else
-      render json: { errors: flashcard.errors }, status: :unprocessable_entity
+      render json: { errors: flashcard.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -34,7 +34,7 @@ class Api::V1::FlashcardsController < ApplicationController
     if flashcard.update(flashcard_params)
       render json: flashcard
     else
-      render json: { errors: flashcard.errors }, status: :unprocessable_entity
+      render json: { errors: flashcard.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

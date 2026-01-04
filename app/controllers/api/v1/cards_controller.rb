@@ -1,6 +1,7 @@
 class Api::V1::CardsController < ApplicationController
   # skip_before_action :authenticate_user!
   before_action :set_flashcard
+  before_action :authenticate_api_v1_user!
   before_action :set_card, only: %i[show update destroy]
 
   def index
@@ -18,7 +19,7 @@ class Api::V1::CardsController < ApplicationController
     if card.save
       render json: card
     else
-      render json: { errors: card.errors }, status: :unprocessable_entity
+      render json: { errors: card.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -26,7 +27,7 @@ class Api::V1::CardsController < ApplicationController
     if @card.update(card_params)
       render json: @card
     else
-      render json: { errors: @card.errors }, status: :unprocessable_entity
+      render json: { errors: @card.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

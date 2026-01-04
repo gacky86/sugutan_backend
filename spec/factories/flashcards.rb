@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :flashcard do
-    description { "MyString" }
-    title { "MyString" }
-    icon_color { "MyString" }
-    language { "MyString" }
-    user { nil }
+    description { "english words in daily life" }
+    title { "english words" }
+    icon_color { "red" }
+    language { "EN" }
+    user
   end
 end
