@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # ALB用のヘルスチェック
+  get '/health', to: ->(env) { [200, { 'Content-Type' => 'text/plain' }, ['OK']] }
+
   namespace :api do
     namespace :v1 do
       resources :test, only: %i[index]

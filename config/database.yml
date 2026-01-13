@@ -17,6 +17,7 @@ test:
 
 production:
   <<: *default
-  database: sugutan_backend_production
-  username: sugutan_backend
-  password: <%= ENV["SUGUTAN_BACKEND_DATABASE_PASSWORD"] %>
+  host: <%= ENV['DB_HOST'] %>
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
