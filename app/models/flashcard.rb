@@ -1,5 +1,5 @@
 class Flashcard < ApplicationRecord
-  LANGUAGE = %w[EN DE FR IT].freeze
+  LANGUAGE = %w[EN DE FR IT PO].freeze
 
   # Associations
   belongs_to :user
