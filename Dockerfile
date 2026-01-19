@@ -25,7 +25,7 @@ RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv && \
 
 # Install the specified Ruby version using rbenv
 ENV PATH="/root/.rbenv/bin:/root/.rbenv/shims:$PATH"
-RUN rbenv install 3.1.2 && rbenv global 3.1.2
+# RUN rbenv install 3.1.2 && rbenv global 3.1.2
 
 # Set the working directory
 RUN mkdir /sugutan_backend
@@ -42,9 +42,9 @@ RUN gem install bundler && bundle install
 COPY . /sugutan_backend
 
 # Add a script to be executed every time the container starts.
-# COPY entrypoint.sh /usr/bin/
-# RUN chmod +x /usr/bin/entrypoint.sh
-# ENTRYPOINT ["entrypoint.sh"]
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
 # Expose the port the sugutan_backend runs on
 EXPOSE 3000
 
