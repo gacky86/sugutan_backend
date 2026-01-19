@@ -5,7 +5,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     if Rails.env.development?
       origins 'http://localhost:5173'
     else
-      origins "example.com"
+      origins "https://sugutan.site"
     end
     resource '*', # すべてのエンドポイントに適用
       headers: :any, # すべてのヘッダーを許可
