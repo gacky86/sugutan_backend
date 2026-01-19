@@ -32,6 +32,9 @@ class Gemini::Client
 
   def prepare_http_request
     url = URI.parse("#{GEMINI_URL}?key=#{ENV.fetch('GEMINI_API_KEY', nil)}")
+    puts "================================"
+    puts ENV.fetch('GEMINI_API_KEY', nil)
+    puts "================================"
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     request = Net::HTTP::Post.new(url, { 'Content-Type' => 'application/json' })
