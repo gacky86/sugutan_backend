@@ -12,6 +12,7 @@ class Flashcard < ApplicationRecord
   validates :title, :language, :icon_color, presence: true
   validates :language, inclusion: { in: LANGUAGE, allow_blank: true }
 
+  # 特定のFlashcardについて、属するCardの枚数(cards_count)、最終学習日(last_reviewed_at)を取得する
   scope :with_stats, lambda {
     left_joins(cards: :card_progresses)
       .select(
@@ -22,6 +23,7 @@ class Flashcard < ApplicationRecord
       .group("flashcards.id")
   }
 
+  # with_statsを自動実行してlast_reviewed_atを取得し、date形式に変換する
   def last_reviewed_days_ago
     return nil unless last_reviewed_at
 

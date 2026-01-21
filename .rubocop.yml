@@ -25,11 +25,12 @@ AllCops:
     - "config/initializers/**/*"
     - "config/puma.rb"
 ### ルールのカスタマイズ
-# RSpecは1つのブロックあたりの行数が多くなるため、チェックの除外から外す
+# RSpec, routerは1つのブロックあたりの行数が多くなるため、チェックから除外
 # ブロック内の行数をチェックする
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
+    - "config/routes.rb"
 # Assignment: 変数への代入
 # Branch: メソッド呼び出し
 # Condition: 条件文
@@ -51,6 +52,22 @@ Metrics/BlockNesting:
 # クラスの行数をチェック（無効）
 Metrics/ClassLength:
   Enabled: false
+# 一つのテスト(it)内のexpectの数は5個まで許容する
+RSpec/MultipleExpectations:
+  Max: 5
+# 日本語での記述を許容するため、パターンのチェックを無効にする
+RSpec/ContextWording:
+  Enabled: false
+RSpec/LetSetup:
+  Enabled: false
+RSpec/NestedGroups:
+  Max: 4
+RSpec/NamedSubject:
+  Enabled: false
+RSpec/ExampleLength:
+  Max: 20
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
 # 一行あたりの文字数
 Layout/LineLength:
   Max: 130

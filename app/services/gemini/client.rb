@@ -3,7 +3,7 @@ require "uri"
 require "json"
 
 class Gemini::Client
-  GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
+  GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent".freeze
   def self.call(system_instruction:, input:)
     new(system_instruction:, input:).call
   end
