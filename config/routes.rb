@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # ALB用のヘルスチェック
-  get '/health', to: ->(env) { [200, { 'Content-Type' => 'text/plain' }, ['OK']] }
+  get '/health', to: ->(_env) { [200, { 'Content-Type' => 'text/plain' }, ['OK']] }
 
   namespace :api do
     namespace :v1 do

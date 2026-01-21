@@ -6,7 +6,7 @@ jobs:
   rspec:
     runs-on: ubuntu-latest
     services:
-      postgres: #ここの情報がdatabase.ymlのtest用と一致している必要がある
+      db: #ここの情報がdatabase.ymlのtest用と一致している必要がある
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
@@ -14,6 +14,12 @@ jobs:
         image: postgres
         ports:
           - 5432:5432
+        # DBが確実に起動してから次のステップへ進むようにする
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v2

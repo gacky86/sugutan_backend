@@ -60,7 +60,7 @@ RSpec.describe CardProgress, type: :model do
     end
   end
 
-  describe 'メソッド' do
+  describe '外部使用メソッドに関するテスト' do
     let(:user) { FactoryBot.create(:user) }
     let(:card) { FactoryBot.create(:card) }
     let(:progress) do
@@ -77,16 +77,24 @@ RSpec.describe CardProgress, type: :model do
 
       context '難易度が "again" (quality < 3) の場合' do
         it 'reset_progress! が呼ばれること' do
-          # メソッドが呼ばれたことを検証
-          expect(progress).to receive(:reset_progress!)
+          # 1. 監視の設定 (allow)
+          allow(progress).to receive(:reset_progress!)
+
+          # 2. 実行
           progress.mark_review!(difficulty: 'again')
+
+          # 3. 検証 (have_received)
+          expect(progress).to have_received(:reset_progress!)
         end
       end
 
       context '難易度が "easy" (quality >= 3) の場合' do
         it 'advance_progress! が呼ばれること' do
-          expect(progress).to receive(:advance_progress!).with(5) # easyはquality=5
+          allow(progress).to receive(:advance_progress!)
+
           progress.mark_review!(difficulty: 'easy')
+
+          expect(progress).to have_received(:advance_progress!).with(5)
         end
       end
     end
@@ -145,8 +153,8 @@ RSpec.describe CardProgress, type: :model do
 
     describe '.due' do
       it '復習期限が現在時刻以前のレコードのみを取得すること' do
-        expect(CardProgress.due).to include(due_progress)
-        expect(CardProgress.due).not_to include(future_progress)
+        expect(described_class.due).to include(due_progress)
+        expect(described_class.due).not_to include(future_progress)
       end
     end
   end
