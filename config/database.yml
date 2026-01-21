@@ -13,6 +13,7 @@ development:
 test:
   <<: *default
   # host: <%= ENV.fetch("DB_HOST", "localhost") %>
+  host: <%= ENV.fetch("DB_HOST", "db") %>
   database: sugutan_backend_test
 
 production:

@@ -14,6 +14,12 @@ jobs:
         image: postgres
         ports:
           - 5432:5432
+        # DBが確実に起動してから次のステップへ進むようにする
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -29,9 +35,12 @@ jobs:
           bundle install --path vendor/bundle
 
       - name: Database create and migrate
+        env:
+          DB_HOST: localhost # GitHub Actions上では localhost を指定
+          RAILS_ENV: test
         run: |
-          bundle exec rails db:create RAILS_ENV=test
-          bundle exec rails db:migrate RAILS_ENV=test
+          bundle exec rails db:create
+          bundle exec rails db:migrate
 
       # - name: assets precompile
       #   run: bundle exec rake assets:precompile RAILS_ENV=test
