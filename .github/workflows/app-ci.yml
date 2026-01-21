@@ -6,7 +6,7 @@ jobs:
   rspec:
     runs-on: ubuntu-latest
     services:
-      postgres: #ここの情報がdatabase.ymlのtest用と一致している必要がある
+      db: #ここの情報がdatabase.ymlのtest用と一致している必要がある
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
