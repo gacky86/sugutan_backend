@@ -35,12 +35,9 @@ jobs:
           bundle install --path vendor/bundle
 
       - name: Database create and migrate
-        env:
-          DB_HOST: localhost # GitHub Actions上では localhost を指定
-          RAILS_ENV: test
         run: |
-          bundle exec rails db:create
-          bundle exec rails db:migrate
+          bundle exec rails db:create RAILS_ENV=test
+          bundle exec rails db:migrate RAILS_ENV=test
 
       # - name: assets precompile
       #   run: bundle exec rake assets:precompile RAILS_ENV=test
