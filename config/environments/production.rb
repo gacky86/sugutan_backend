@@ -95,13 +95,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'api.sugutan.site', protocol: 'https' }
 
   config.action_mailer.smtp_settings = {
-    address:              "email-smtp.ap-northeast-1.amazonaws.com", # 東京リージョン
+    address:              "smtp.gmail.com",
     port:                 587,
-    domain:               "sugutan.site",
-    user_name:            ENV['SMTP_USERNAME'],
-    password:             ENV['SMTP_PASSWORD'],
-    authentication:       :login,
-    enable_starttls: true
+    domain:               'gmail.com',
+    user_name:            ENV['GMAIL_USER_NAME'],
+    password:             ENV['GMAIL_PASSWORD'],
+    authentication:       'plain',
+    enable_starttls_auto: true
   }
   config.action_controller.raise_on_open_redirects = false
 end
