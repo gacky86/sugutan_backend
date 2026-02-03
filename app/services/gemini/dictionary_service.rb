@@ -12,7 +12,6 @@ module Gemini
         "example": { "jp": "string", "en": "string" },
         "synonyms": string[] | [],
         "antonyms": string[] | [],
-        "etymology": string,
         "part_of_speech": string,
         "collocations": string[],
         "success": boolean,
@@ -33,7 +32,7 @@ module Gemini
       - If the input is Japanese, provide the pronunciation for the translated English word.
       - Use General American English (GenAm) as the standard for pronunciation.
 
-      About synonyms, antonyms, etymology, part of speech and collocations:
+      About synonyms, antonyms, part of speech and collocations:
       - If input is English, they must be those of the input.
       - If input is Japanese, they must be those of the translated english expression.
 
