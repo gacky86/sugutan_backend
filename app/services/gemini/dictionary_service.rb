@@ -9,14 +9,13 @@ module Gemini
 
       {
         "translation": { "jp": "string", "en": "string" },
-        "definition": { "jp": "string", "en": "string" },
         "example": { "jp": "string", "en": "string" },
         "synonyms": string[] | [],
         "antonyms": string[] | [],
-        "etymology": string,
         "part_of_speech": string,
         "collocations": string[],
-        "success": boolean
+        "success": boolean,
+        "pronunciation": string
       }
       Rules:
       - Return an array: [ {…}, {…} ]
@@ -27,7 +26,13 @@ module Gemini
       - If input is Japanese, "jp" in translation must be the input.
       - If input is English, "en" in translation must be the input.
 
-      About synonyms, antonyms, etymology, part of speech and collocations:
+      About pronunciation:
+      - Provide the phonetic transcription using the International Phonetic Alphabet (IPA).
+      - If the input is English, provide the pronunciation for the input word.
+      - If the input is Japanese, provide the pronunciation for the translated English word.
+      - Use General American English (GenAm) as the standard for pronunciation.
+
+      About synonyms, antonyms, part of speech and collocations:
       - If input is English, they must be those of the input.
       - If input is Japanese, they must be those of the translated english expression.
 

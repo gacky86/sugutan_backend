@@ -13,6 +13,6 @@ class Card < ApplicationRecord
   validates :front, :back, :front_sentence, :back_sentence, :card_type, presence: true
   validates :front, :back, length: { maximum: 60 }
   validates :front_sentence, :back_sentence, length: { maximum: 256 }
-  validates :explanation_front, :explanation_back, length: { maximum: 256 }
+  validates :explanation, length: { maximum: 256 }
   validates :card_type, inclusion: { in: CARD_TYPES, allow_blank: true }
 end

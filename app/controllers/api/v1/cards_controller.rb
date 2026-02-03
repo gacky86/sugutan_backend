@@ -51,7 +51,7 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:front, :back, :front_sentence, :back_sentence, :explanation_front, :explanation_back,
+    params.require(:card).permit(:front, :back, :pronunciation, :front_sentence, :back_sentence, :explanation,
                                  :card_type)
   end
 end
