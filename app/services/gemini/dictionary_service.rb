@@ -9,7 +9,6 @@ module Gemini
 
       {
         "translation": { "jp": "string", "en": "string" },
-        "definition": { "jp": "string", "en": "string" },
         "example": { "jp": "string", "en": "string" },
         "synonyms": string[] | [],
         "antonyms": string[] | [],
