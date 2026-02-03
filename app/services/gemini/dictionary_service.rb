@@ -16,7 +16,8 @@ module Gemini
         "etymology": string,
         "part_of_speech": string,
         "collocations": string[],
-        "success": boolean
+        "success": boolean,
+        "pronunciation": string
       }
       Rules:
       - Return an array: [ {…}, {…} ]
@@ -26,6 +27,12 @@ module Gemini
       - Do not include any explanation.
       - If input is Japanese, "jp" in translation must be the input.
       - If input is English, "en" in translation must be the input.
+
+      About pronunciation:
+      - Provide the phonetic transcription using the International Phonetic Alphabet (IPA).
+      - If the input is English, provide the pronunciation for the input word.
+      - If the input is Japanese, provide the pronunciation for the translated English word.
+      - Use General American English (GenAm) as the standard for pronunciation.
 
       About synonyms, antonyms, etymology, part of speech and collocations:
       - If input is English, they must be those of the input.
