@@ -63,6 +63,11 @@ class CardProgress < ApplicationRecord
     )
   end
 
+  # 単語帳ごとのcard_progressに絞り込むscope
+  scope :for_flashcard, lambda { |flashcard_id|
+    joins(:card).where(cards: { flashcard_id: flashcard_id })
+  }
+
   # 学習モードごとのcard_progressに絞り込むscope
   scope :for_mode, ->(mode) { where(mode:) }
 
