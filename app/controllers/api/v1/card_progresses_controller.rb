@@ -17,6 +17,7 @@ class Api::V1::CardProgressesController < ApplicationController
   # 学習対象カードの取得：本日学習対象となるカードの取得
   def due
     progresses = current_api_v1_user.card_progresses
+      .for_flashcard(params[:flashcard_id])
       .for_mode(params[:mode])
       .due.ordered_by_due
       .includes(card: :extra_notes)
