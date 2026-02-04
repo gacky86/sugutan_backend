@@ -10,6 +10,8 @@ development:
   <<: *default
   database: sugutan_backend_development
 
+# localのdocker containerに対してtestを実行する場合はhost: dbでないといけない
+# github actions環境ではhost: localhostでないといけない
 test:
   <<: *default
   host: <%= ENV.fetch("DB_HOST", "localhost") %>

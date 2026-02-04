@@ -24,9 +24,9 @@ ja:
         back: "裏面（単語）"
         front_sentence: "表面（例文）"
         back_sentence: "裏面（例文）"
-        explanation_front: "表面（解説）"
-        explanation_back: "裏面（解説）"
+        explanation: "解説"
         card_type: "品詞"
+        pronunciation: "発音"
       card_progress:
         interval_days: "復習間隔（日数）"
         next_review_at: "次回復習日時"
