@@ -4,8 +4,8 @@ FactoryBot.define do
     back { "word" }
     front_sentence { "単語を使った例文" }
     back_sentence { "A sentence using the word" }
-    explanation_front { "単語の説明" }
-    explanation_back { "explanation of the word" }
+    explanation { "単語の説明" }
+    pronunciation { "単語の発音" }
     card_type { "noun" }
     flashcard
   end

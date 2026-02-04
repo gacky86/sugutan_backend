@@ -251,10 +251,10 @@ RSpec.describe Card, type: :model do
       end
     end
 
-    describe 'explanation_front' do
+    describe 'explanation' do
       context '256字の場合' do
         let(:attributes) do
-          { explanation_front: 'a' * 256 }
+          { explanation: 'a' * 256 }
         end
 
         it { is_expected.to be_valid }
@@ -262,12 +262,12 @@ RSpec.describe Card, type: :model do
 
       context '257字の場合' do
         let(:attributes) do
-          { explanation_front: 'a' * 257 }
+          { explanation: 'a' * 257 }
         end
 
         it {
           expect(subject).to be_invalid
-          expect(subject.errors.attribute_names).to contain_exactly(:explanation_front)
+          expect(subject.errors.attribute_names).to contain_exactly(:explanation)
           expect(subject.errors.full_messages).to contain_exactly(
             '表面（解説）は256文字以内で入力してください'
           )
@@ -276,7 +276,7 @@ RSpec.describe Card, type: :model do
 
       context 'nilの場合' do
         let(:attributes) do
-          { explanation_front: nil }
+          { explanation: nil }
         end
 
         it { is_expected.to be_valid }
@@ -284,7 +284,7 @@ RSpec.describe Card, type: :model do
 
       context '空文字の場合' do
         let(:attributes) do
-          { explanation_front: "" }
+          { explanation: "" }
         end
 
         it { is_expected.to be_valid }
@@ -292,55 +292,7 @@ RSpec.describe Card, type: :model do
 
       context '1文字の場合' do
         let(:attributes) do
-          { explanation_front: "a" }
-        end
-
-        it { is_expected.to be_valid }
-      end
-    end
-
-    describe 'explanation_back' do
-      context '256字の場合' do
-        let(:attributes) do
-          { explanation_back: 'a' * 256 }
-        end
-
-        it { is_expected.to be_valid }
-      end
-
-      context '257字の場合' do
-        let(:attributes) do
-          { explanation_back: 'a' * 257 }
-        end
-
-        it {
-          expect(subject).to be_invalid
-          expect(subject.errors.attribute_names).to contain_exactly(:explanation_back)
-          expect(subject.errors.full_messages).to contain_exactly(
-            '裏面（解説）は256文字以内で入力してください'
-          )
-        }
-      end
-
-      context 'nilの場合' do
-        let(:attributes) do
-          { explanation_back: nil }
-        end
-
-        it { is_expected.to be_valid }
-      end
-
-      context '空文字の場合' do
-        let(:attributes) do
-          { explanation_back: "" }
-        end
-
-        it { is_expected.to be_valid }
-      end
-
-      context '1文字の場合' do
-        let(:attributes) do
-          { explanation_back: "a" }
+          { explanation: "a" }
         end
 
         it { is_expected.to be_valid }
