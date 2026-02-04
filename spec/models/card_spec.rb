@@ -269,7 +269,7 @@ RSpec.describe Card, type: :model do
           expect(subject).to be_invalid
           expect(subject.errors.attribute_names).to contain_exactly(:explanation)
           expect(subject.errors.full_messages).to contain_exactly(
-            '表面（解説）は256文字以内で入力してください'
+            '解説は256文字以内で入力してください'
           )
         }
       end

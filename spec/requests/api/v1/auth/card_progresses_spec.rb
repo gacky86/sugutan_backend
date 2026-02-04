@@ -23,6 +23,8 @@ RSpec.describe "Api::V1::CardProgresses", type: :request do
 
   # 2. due (学習対象の取得)
   describe "GET /api/v1/card_progresses/due" do
+    let(:params) { { flashcard_id: flashcard.id, mode: 'input' } }
+
     before do
       # テスト用の学習記録を作成（本日が期限切れの状態を作る）
       cards.each do |card|
@@ -31,7 +33,7 @@ RSpec.describe "Api::V1::CardProgresses", type: :request do
     end
 
     it "学習対象のカードを正しい構造で返すこと" do
-      get "/api/v1/card_progresses/due", params: { mode: 'input' }, headers: auth_headers
+      get "/api/v1/card_progresses/due", params: params, headers: auth_headers
 
       expect(response).to have_http_status(:success)
       json = response.parsed_body
