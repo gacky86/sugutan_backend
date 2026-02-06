@@ -106,6 +106,7 @@ https://github.com/gacky86/sugutan_frontend/blob/main/public/demo/20260206_0.gif
 
 ## インフラ構成図
 
+<img src="https://raw.githubusercontent.com/gacky86/sugutan_frontend/main/public/images/infrastructure.png" alt="Infra diagram" />
 
 ## ER図
 <img src="https://raw.githubusercontent.com/gacky86/sugutan_frontend/main/public/images/ER_diagram.png" alt="ER diagram" />
