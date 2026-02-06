@@ -1,8 +1,6 @@
 こちらは「スグ単」のバックエンドのリポジトリです。フロントエンドのリポジトリは[こちら](https://github.com/gacky86/sugutan_frontend)です。インフラのリポジトリは[こちら](https://github.com/gacky86/sugutan_infra)です。
 
 # スグ単/AI辞書機能付き単語帳
-画像をここに挿入
-
 ## サービス概要
 スグ単は「英語学習中に調べた表現を後で復習して使えるようにしたい！」という想いから作られた、AI辞書機能付き単語帳アプリです。
 
@@ -23,8 +21,21 @@ https://sugutan.site/
 ## メイン機能の使い方
 gif画像を使って説明する
 単語帳の作成
+https://github.com/gacky86/sugutan_frontend/blob/main/public/demo/20260206_0.gif
 単語の検索と登録
 学習
+<table>
+  <tr>
+     <th style="text-align: center">単語帳作成</th>
+    <th style="text-align: center">AI単語帳検索＆単語カード登録</th>
+    <th style="text-align: center">単語カード学習</th>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/gacky86/sugutan_frontend/main/public/demo/20260206_0.gif" alt="単語帳作成" />まずは、単語帳作成ボタンを押して、タイトルなどを記入後に作成ボタンを押す。</td>
+    <td><img src="https://raw.githubusercontent.com/gacky86/sugutan_frontend/main/public/demo/20260206_1.gif" alt="AI辞書検索" />次に、AI辞書機能で知りたい表現を検索する。検索結果を登録するには登録先の単語帳を選択し、単語カード追加ボタンを押す。</td>
+    <td><img src="https://raw.githubusercontent.com/gacky86/sugutan_frontend/main/public/demo/20260206_2.gif" alt="単語カード学習" />単語帳を開き、Inputモードで学習（またはOutputモードで学習）を押すと、復習を開始できる。</td>
+  </tr>
+</table>
 
 ## 使用技術一覧
 
