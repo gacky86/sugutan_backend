@@ -31,9 +31,14 @@ https://github.com/gacky86/sugutan_frontend/blob/main/public/demo/20260206_0.gif
     <th style="text-align: center">単語カード学習</th>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/gacky86/sugutan_frontend/main/public/demo/20260206_0.gif" alt="単語帳作成" width="250" /><br />まずは、単語帳作成ボタンを押して、タイトルと単語帳の概要を記入後に作成ボタンを押す。</td>
-    <td><img src="https://raw.githubusercontent.com/gacky86/sugutan_frontend/main/public/demo/20260206_1.gif" alt="AI辞書検索" width="250" /><br />次に、AI辞書機能で知りたい表現を検索する。検索結果を登録するには登録先の単語帳を選択し、単語カード追加ボタンを押す。</td>
-    <td><img src="https://raw.githubusercontent.com/gacky86/sugutan_frontend/main/public/demo/20260206_2.gif" alt="単語カード学習" width="250" /><br />単語帳を開き、Inputモードで学習（またはOutputモードで学習）を押すと、復習を開始できる。</td>
+    <td><img src="https://raw.githubusercontent.com/gacky86/sugutan_frontend/main/public/demo/20260206_0.gif" alt="単語帳作成" width="250" /></td>
+    <td><img src="https://raw.githubusercontent.com/gacky86/sugutan_frontend/main/public/demo/20260206_1.gif" alt="AI辞書検索" width="250" /></td>
+    <td><img src="https://raw.githubusercontent.com/gacky86/sugutan_frontend/main/public/demo/20260206_2.gif" alt="単語カード学習" width="250" /></td>
+  </tr>
+  <tr>
+    <td>まずは、単語帳作成ボタンを押して、タイトルと単語帳の概要を記入後に作成ボタンを押す。</td>
+    <td>次に、AI辞書機能で知りたい表現を検索する。検索結果を登録するには登録先の単語帳を選択し、単語カード追加ボタンを押す。</td>
+    <td>単語帳を開き、Inputモードで学習（またはOutputモードで学習）を押すと、復習を開始できる。</td>
   </tr>
 </table>
 
