@@ -107,5 +107,5 @@ https://sugutan.site/
 <img src="https://raw.githubusercontent.com/gacky86/sugutan_frontend/main/public/images/ER_diagram.png" alt="ER diagram" />
 
 
-## 画面遷移図
-[Figma_画面遷移図](https://www.figma.com/design/2fsBW9wfbCiC3gmISAJgCd/%E5%8D%98%E8%AA%9E%E5%B8%B3%E3%82%A2%E3%83%97%E3%83%AA_%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0?node-id=0-1&m=dev&t=z3jLNfVkQx4a8r8B-1)
+## ワイヤーフレーム
+[Figma_ワイヤーフレーム](https://www.figma.com/design/2fsBW9wfbCiC3gmISAJgCd/%E5%8D%98%E8%AA%9E%E5%B8%B3%E3%82%A2%E3%83%97%E3%83%AA_%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0?node-id=0-1&m=dev&t=z3jLNfVkQx4a8r8B-1)
