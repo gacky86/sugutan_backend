@@ -99,7 +99,7 @@ https://github.com/gacky86/sugutan_frontend/blob/main/public/demo/20260206_0.gif
     - CI: Rubocop / RSpec
     - CD: AWS ECS
   - フロントエンド
-    - CI: ESLint / Prettier / Vitest / Codecov
+    - CI: ESLint / Prettier / Vitest
     - CD: S3 / Cloud Front
 - TerraformによるインフラのIaC化
 
