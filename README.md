@@ -112,3 +112,4 @@ https://github.com/gacky86/sugutan_frontend/blob/main/public/demo/20260206_0.gif
 
 
 ## 画面遷移図
+https://www.figma.com/proto/2fsBW9wfbCiC3gmISAJgCd/%E5%8D%98%E8%AA%9E%E5%B8%B3%E3%82%A2%E3%83%97%E3%83%AA_%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0?node-id=0-1&t=z3jLNfVkQx4a8r8B-1
