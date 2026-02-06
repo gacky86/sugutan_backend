@@ -44,18 +44,18 @@ https://github.com/gacky86/sugutan_frontend/blob/main/public/demo/20260206_0.gif
 
 ## 使用技術一覧
 
-**バックエンド:** Ruby 3.2.2 / Rails 7.0.7.2
+**バックエンド:** Ruby 3.1.2 / Rails 7.1.5.2
 
 - コード解析 / フォーマッター: Rubocop
 - テストフレームワーク: RSpec
 
-**フロントエンド:** TypeScript 5.0.2 / React 18.2.0
+**フロントエンド:** TypeScript 5.9.3 / React 19.1.1
 
 - コード解析: ESLint
 - フォーマッター: Prettier
 - テストフレームワーク: Vitest / React Testing Library
 - CSSフレームワーク: Tailwind CSS
-- 主要パッケージ: Axios / Font Awesome / React Paginate / React Responsive Modal / React Toastify
+- 主要パッケージ: Axios / React Icons / React router dom / motion / React redux / React Toastify
 
 **インフラ:** AWS(Route53 / Certificate Manager / Cloud Front / S3 / ALB / VPC / ECR / ECS Fargate / RDS PostgresSQL) 
 
@@ -108,7 +108,7 @@ https://github.com/gacky86/sugutan_frontend/blob/main/public/demo/20260206_0.gif
 
 
 ## ER図
-
+<img src="https://raw.githubusercontent.com/gacky86/sugutan_frontend/main/public/images/ER_diagram.png" alt="ER diagram" />
 
 
 ## 画面遷移図
