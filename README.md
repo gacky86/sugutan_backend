@@ -19,11 +19,6 @@ https://sugutan.site/
 開発背景や、サービスのリリースまでに勉強したことなどをまとめています。
 
 ## メイン機能の使い方
-gif画像を使って説明する
-単語帳の作成
-https://github.com/gacky86/sugutan_frontend/blob/main/public/demo/20260206_0.gif
-単語の検索と登録
-学習
 <table>
   <tr>
      <th style="text-align: center">単語帳作成</th>
