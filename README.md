@@ -14,7 +14,7 @@ https://sugutan.site/
 
 ### ▼ 紹介記事(Qiita)
 
-[]()
+[未経験からRailsとReactを学び、ポートフォリオを作るまで【Rails/React/TypeScript/AWS/Docker/Github Actions/Terraform】](https://qiita.com/r_i9686/items/0074de0b39a16e4b722c)
 
 開発背景や、サービスのリリースまでに勉強したことなどをまとめています。
 
