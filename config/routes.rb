@@ -26,6 +26,12 @@ Rails.application.routes.draw do
         registrations: 'api/v1/auth/registrations'
         # omniauth_callbacks: 'api/v1/auth/omniauth_callbacks'
       }
+      # メールアドレス変更、パスワード変更、退会処理
+      resource :account, only: [] do
+        patch :email, to: "accounts#update_email"
+        patch :password, to: 'accounts#update_password'
+        delete :withdraw
+      end
       namespace :auth do
         get "validate_token", to: "sessions#validate_token"
       end

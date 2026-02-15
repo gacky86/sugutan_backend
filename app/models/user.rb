@@ -9,6 +9,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
   include DeviseTokenAuth::Concerns::User
 
+  def self.reconfirmable
+    true
+  end
+
+  # 退会済みかのチェック
+  def deleted?
+    deleted_at.present?
+  end
+
   # # Googleアカウントで登録/ログインするためのメソッド
   # # find_or_create_byは条件に合うユーザーがいればそのレコードを返し、居なければ新規登録してそのレコードを返す。
   # def self.from_omniauth(auth)

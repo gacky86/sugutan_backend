@@ -74,6 +74,7 @@ DeviseTokenAuth.setup do |config|
   # config.send_confirmation_email = true
 
   # confirm_success_urlエラー対応
+  # 確認メールのリンクを踏んだ際のリダイレクト先
   # config.default_confirm_success_url = "http://localhost:5173/"
   config.default_confirm_success_url = "https://sugutan.site/"
 

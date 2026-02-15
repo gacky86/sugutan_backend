@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
   include ActionController::Cookies
 
-  before_action :set_token_headers_from_cookies, :set_locale
+  before_action :set_token_headers_from_cookies, :set_locale, :reject_deleted_user
 
   private
 
@@ -47,5 +47,12 @@ class ApplicationController < ActionController::API
 
   def extract_locale_from_accept_language_header
     request.env['HTTP_ACCEPT_LANGUAGE']&.scan(/^[a-z]{2}/)&.first
+  end
+
+  def reject_deleted_user
+    if current_api_v1_user&.deleted?
+      sign_out current_api_v1_user
+      render json: { error: '退会済みです' }, status: :unauthorized
+    end
   end
 end
