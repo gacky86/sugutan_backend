@@ -106,6 +106,7 @@ GEM
       devise (> 3.5.2, < 5)
       rails (>= 4.2.0, < 8.1)
     diff-lcs (1.6.1)
+    docile (1.4.1)
     drb (2.2.3)
     erb (4.0.4)
       cgi (>= 0.3.3)
@@ -334,6 +335,12 @@ GEM
       rubocop (~> 1.61)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.13.2)
+    simplecov_json_formatter (0.1.4)
     snaky_hash (2.0.3)
       hashie (>= 0.1.0, < 6)
       version_gem (>= 1.1.8, < 3)
@@ -382,6 +389,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  simplecov
   tzinfo-data
 
 RUBY VERSION
